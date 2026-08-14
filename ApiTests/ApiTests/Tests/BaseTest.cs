@@ -7,6 +7,8 @@ namespace ApiTests.Tests
 {
     public abstract class BaseTest
     {
+        private readonly Faker _faker = new Faker();
+
         protected RestClient PetStoreApiClient;
 
         protected List<long> CreatedPetsIds = new List<long>();
@@ -31,8 +33,7 @@ namespace ApiTests.Tests
         [SetUp]
         public void GeneratePetWithRandomName()
         {
-            // GeneratedPet = ...
-            // TODO: Generate Pet With Random Name
+            GeneratedPet = new Pet(Name: _faker.Random.String2(10, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"));
         }
 
         [TearDown]
@@ -50,7 +51,9 @@ namespace ApiTests.Tests
 
         private void DeletePetById(long id)
         {
-            // TODO: Implement delete pet by id logic
+            var request = new RestRequest(Endpoints.PetById, Method.Delete)
+                .AddUrlSegment(Endpoints.PetIdParameter, id);
+            PetStoreApiClient.Execute(request);
         }
     }
 }
