@@ -1,4 +1,4 @@
-﻿namespace Unit2Demo.Constants
+﻿namespace ApiTests.Constants
 {
     public static class PetStoreApiSettings
     {

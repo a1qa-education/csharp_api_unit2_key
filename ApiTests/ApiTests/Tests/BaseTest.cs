@@ -1,9 +1,9 @@
 ﻿using Bogus;
 using RestSharp;
-using Unit2Demo.Constants;
-using Unit2Demo.Models;
+using ApiTests.Constants;
+using ApiTests.Models;
 
-namespace Unit2Demo.Tests
+namespace ApiTests.Tests
 {
     public abstract class BaseTest
     {
@@ -42,6 +42,10 @@ namespace Unit2Demo.Tests
             {
                 DeletePetById(id);
             }
+            // Clear the list after teardown for consistency with the other language tracks -
+            // NUnit creates a fresh instance per test by default so this isn't a live bug here,
+            // but leaving stale ids around is still misleading if that default ever changes.
+            CreatedPetsIds.Clear();
         }
 
         private void DeletePetById(long id)

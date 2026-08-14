@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
-namespace Unit2Demo.Models
+namespace ApiTests.Models
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Status
